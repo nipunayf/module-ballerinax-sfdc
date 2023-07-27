@@ -28,4 +28,9 @@ jobs:
           scan-ref: '.'
           format: 'table'
           timeout: '10m0s'
+          output: 'trivy-results.sarif'
           exit-code: '1'
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
